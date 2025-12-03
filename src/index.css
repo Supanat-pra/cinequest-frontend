@@ -1,8 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 @import "tailwindcss";
-
 @tailwind utilities;
 
 body {
-  color: white;
-  background-color: black;
+  color: #e5e5e5;
+  background-color: #0d0d0d;
+  font-family: "Manrope", sans-serif;
 }
+
+/*
+  Example of a component style, placed after the global body rule.
+.card-container {
+  @apply p-6 bg-gray-800 rounded-lg shadow-xl;
+  */
