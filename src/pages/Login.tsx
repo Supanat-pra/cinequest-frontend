@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const Login: React.FC = () => {
   return (
-    <div className="flex justify-center p-20">
+    <div className="flex justify-center p-20 min-h-screen">
       <div className="bg-[#1E1E1E] flex flex-col gap-10 w-[400px] h-[500px] p-10 border border-neutral-700 rounded-md">
         <div className="text-5xl">Login</div>
         <form className="flex flex-col gap-5">
