@@ -1,73 +1,119 @@
-# React + TypeScript + Vite
+# 🎬 CineQuest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CineQuest is a personal movies and TV shows tracking application that allows users to record what they have watched, rate titles, and write personal reviews — all in one place.
 
-Currently, two official plugins are available:
+The core idea behind CineQuest is simple: **track your movie journey and compare your ratings with others**, similar to IMDb, but built from scratch to demonstrate real-world software engineering skills.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+CineQuest Frontend is the **client-side application** for CineQuest. It focuses on delivering a clean, responsive user experience while consuming the CineQuest Backend API.
 
-## React Compiler
+This project demonstrates **modern frontend practices**, API consumption, state management, and authentication handling.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🔐 Authentication (JWT-based)
+- 🔍 Search movies & TV shows
+- ⭐ Rate and review watched titles
+- 📚 Personal watch history
+- 📊 Compare ratings with other users
+- 💡 Clean, minimal UI
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠 Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **React**
+- **TypeScript**
+- **Vite**
+- **React Router**
+- **Axios**
+- **Tailwind CSS**
+- **shadcn**
+
+---
+
+## 📁 Project Structure
+
+```bash
+src/
+├── api/            # API clients & fetch wrappers
+├── components/     # Reusable UI components
+├── pages/          # Route-level pages
+├── context/        # Auth & global state
+├── hooks/          # Custom React hooks
+├── utils/          # Helpers & constants
+├── App.tsx
+└── main.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🔗 Backend Integration
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Communicates with CineQuest Backend via REST API
+- JWT token is stored securely in HTTP-Only Cookies
+- Token is attached to requests automatically
+
+Example:
+
+```http
+Cookie: accessToken=<token>
 ```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js ≥ 18
+- Running CineQuest Backend
+
+### Installation
+
+```bash
+git clone https://github.com/Supanat-pra/cinequest-frontend.git
+cd cinequest-frontend
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file:
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+### Run in Development
+
+```bash
+npm run dev
+```
+
+---
+
+## 🧠 UI & Architecture Principles
+
+- Component-driven design
+- Clear separation of pages and logic
+- Minimal global state
+- Strong typing with TypeScript
+
+---
+
+## 📈 Future Improvements
+
+- Pagination & infinite scrolling
+- Better loading & error states
+- Accessibility improvements
+
+---
+
+## 👤 Author
+
+**Supanat Prakobkham**  
+Frontend for CineQuest Project
+
+---
