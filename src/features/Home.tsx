@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-export const Home: React.FC = () => {
+export const Home = () => {
   return (
     <div className="m-8">
       <h1>Welcome to CineQuest</h1>

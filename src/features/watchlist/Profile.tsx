@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-export const Profile: React.FC = () => {
+export const Profile = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-[32%_68%] min-h-screen">
       <div className="h-[500px] flex flex-col items-center justify-center p-8 gap-6 ">

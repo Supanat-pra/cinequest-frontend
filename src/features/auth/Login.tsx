@@ -1,6 +1,23 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./useAuth";
+import { login } from "./auth.service";
 
-export const Login: React.FC = () => {
+export const Login = () => {
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  const [form, setForm] = useState({ username: "", password: "" });
+
+  if (isLoggedIn) {
+    navigate("/watchlist");
+  }
+
+  const handleLogIn = async () => {
+    try {
+      const res = await login(form);
+    } catch (err) {}
+  };
+
   return (
     <div className="flex justify-center p-20 min-h-screen">
       <div className="bg-[#1E1E1E] flex flex-col gap-10 w-[400px] h-[500px] p-10 border border-neutral-700 rounded-md">

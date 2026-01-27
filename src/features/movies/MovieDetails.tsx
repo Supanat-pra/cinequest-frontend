@@ -1,4 +1,4 @@
-export const MovieDetails: React.FC = () => {
+export const MovieDetails = () => {
   return (
     <div>
       <div className="m-8 grid grid-cols-[32%_68%]">

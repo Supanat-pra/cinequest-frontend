@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const Register: React.FC = () => {
+export const Register = () => {
   return (
     <div className="flex justify-center p-20 min-h-screen">
       <div className="bg-[#1E1E1E] flex flex-col gap-10 w-[550px] h-auto p-10 border border-neutral-700 rounded-md">

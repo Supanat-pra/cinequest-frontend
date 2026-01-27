@@ -1,4 +1,4 @@
-export const Search: React.FC = () => {
+export const Search = () => {
   return (
     <div>
       <div>Search</div>

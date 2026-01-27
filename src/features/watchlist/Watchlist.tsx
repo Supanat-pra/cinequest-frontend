@@ -1,8 +1,8 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
-import { MovieCard } from "../components/MovieCard";
+import { MovieCard } from "../../components/MovieCard";
 
-export const Watchlist: React.FC = () => {
+export const Watchlist = () => {
   return (
     <div className="m-8">
       <h1 className="text-4xl text-center">MY WATCHLIST</h1>
