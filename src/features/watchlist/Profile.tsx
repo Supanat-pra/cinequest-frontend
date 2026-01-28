@@ -1,6 +1,17 @@
+import { useEffect } from "react";
+import { useAuth } from "../auth/useAuth";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 export const Profile = () => {
+  const { isLoggedIn, user } = useAuth();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/watchlist");
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-[32%_68%] min-h-screen">
       <div className="h-[500px] flex flex-col items-center justify-center p-8 gap-6 ">
@@ -32,7 +43,7 @@ export const Profile = () => {
             type="text"
             id="firstname"
             name="firstname"
-            value=""
+            value={user?.first_name}
             readOnly
             className="w-full  px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none"
           />
@@ -48,7 +59,7 @@ export const Profile = () => {
             type="text"
             id="lastname"
             name="lastname"
-            value=""
+            value={user?.last_name}
             readOnly
             className="w-full px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none"
           />
@@ -64,23 +75,7 @@ export const Profile = () => {
             type="email"
             id="email"
             name="email"
-            value=""
-            readOnly
-            className="w-full px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none"
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="phone"
-            className="block text-sm font-medium mt-5 mb-2 uppercase"
-          >
-            Tel.
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value=""
+            value={user?.email}
             readOnly
             className="w-full px-4 py-2 text-[#E8D9C6] border border-[#fff8ee] rounded-md focus:outline-none"
           />

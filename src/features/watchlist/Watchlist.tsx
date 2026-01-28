@@ -1,8 +1,19 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../../components/MovieCard";
+import { useAuth } from "../auth/useAuth";
 
 export const Watchlist = () => {
+  const { isLoggedIn } = useAuth();
+
+  if (!isLoggedIn) {
+    return (
+      <div className="flex text-5xl items-center justify-center h-screen w-screen">
+        Please Login First
+      </div>
+    );
+  }
+
   return (
     <div className="m-8">
       <h1 className="text-4xl text-center">MY WATCHLIST</h1>

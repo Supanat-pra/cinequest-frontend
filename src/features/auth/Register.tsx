@@ -1,29 +1,70 @@
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./useAuth";
+import { register } from "./auth.service";
 
 export const Register = () => {
+  const { isLoggedIn } = useAuth();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [form, setForm] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    username: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/watchlist");
+    }
+  }, [isLoggedIn, navigate]);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await register(form);
+      navigate("/login");
+    } catch {
+      alert("Cannot register");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex justify-center p-20 min-h-screen">
       <div className="bg-[#1E1E1E] flex flex-col gap-10 w-[550px] h-auto p-10 border border-neutral-700 rounded-md">
         <div className="text-3xl">Register</div>
-        <form className="flex flex-col gap-4">
+        <form onSubmit={handleRegister} className="flex flex-col gap-4">
           <div className="flex gap-5">
-            <label htmlFor="firstname">
-              Firstname:
+            <label htmlFor="first_name">
+              First Name:
               <input
                 type="text"
                 className="bg-white text-black border border-neutral-600 px-2 text-sm w-full h-7"
-                id="firstname"
-                name="firstname"
+                id="first_name"
+                name="first_name"
+                onChange={handleChange}
+                value={form.first_name}
                 required
               />
             </label>
-            <label htmlFor="lastname">
-              Lastname:
+            <label htmlFor="last_name">
+              Last Name:
               <input
                 type="text"
                 className="bg-white text-black border border-neutral-600 px-2 text-sm w-full h-7"
-                id="lastname"
-                name="lastname"
+                id="last_name"
+                name="last_name"
+                onChange={handleChange}
+                value={form.last_name}
                 required
               />
             </label>
@@ -35,6 +76,8 @@ export const Register = () => {
               className="bg-white text-black border border-neutral-600 px-2 text-sm w-full h-7"
               id="email"
               name="email"
+              onChange={handleChange}
+              value={form.email}
               required
             />
           </label>
@@ -45,6 +88,8 @@ export const Register = () => {
               className="bg-white text-black border border-neutral-600 px-2 text-sm w-full h-7"
               id="username"
               name="username"
+              onChange={handleChange}
+              value={form.username}
               required
             />
           </label>
@@ -55,14 +100,17 @@ export const Register = () => {
               className="bg-white text-black border border-neutral-600 px-2 text-sm w-full h-7"
               id="password"
               name="password"
+              onChange={handleChange}
+              value={form.password}
               required
             />
           </label>
           <button
             type="submit"
+            disabled={loading}
             className="w-[200px] text-lg mx-auto mt-2 py-2 bg-red-500 hover:bg-red-700"
           >
-            Register
+            {loading ? "..." : "Register"}
           </button>
           <Link
             to="/login"
