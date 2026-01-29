@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { AuthContext } from "./auth.context";
+import Lottie from "lottie-react";
+import LoadAnimate from "../../assets/LoadAnimate.json";
 import { getMe, loginService, logoutService } from "./auth.service";
 import type { loginPayload, AuthUser } from "./auth.types";
 
@@ -39,8 +41,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen w-screen bg-linear-to-b from-red-500 to-black">
-        LOADING
+      <div className="flex items-center justify-center h-screen w-screen">
+        <Lottie animationData={LoadAnimate} />
       </div>
     );
   }

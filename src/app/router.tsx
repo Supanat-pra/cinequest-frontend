@@ -23,3 +23,5 @@ export const router = createBrowserRouter([
     ],
   },
 ]);
+
+//<Route path="/title/:mediaType/:movieId" element={<MovieDetails />} /> can also be use

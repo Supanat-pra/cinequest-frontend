@@ -8,7 +8,7 @@ export const Profile = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!isLoggedIn) {
-      navigate("/watchlist");
+      navigate("/");
     }
   }, [isLoggedIn, navigate]);
 

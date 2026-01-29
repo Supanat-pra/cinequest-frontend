@@ -14,7 +14,7 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <div className="sticky top-0 w-full bg-[#141313] pl-5 pr-10 py-2 flex justify-between border-b-2 border-neutral-700">
+    <div className="sticky z-50 top-0 w-full bg-[#141313] pl-5 pr-10 py-2 flex justify-between border-b-2 border-neutral-700">
       <div className="flex gap-5 items-center">
         <img
           src={movieicon}
@@ -22,26 +22,51 @@ export const Navbar: React.FC = () => {
           className="w-12 h-12 align-middle"
         ></img>
         <div className="flex gap-10 items-center">
-          <Link to="/" className="text-lg">
+          <Link to="/" className="text-lg hover:[text-shadow:0_0_20px_#e6dedd]">
             Home
           </Link>
-          <Link to="/watchlist" className="text-lg">
+          <Link
+            to="/watchlist"
+            className="text-lg hover:[text-shadow:0_0_20px_#e6dedd] cursor-pointer"
+          >
             Watchlist
           </Link>
         </div>
       </div>
+
       {isLoggedIn ? (
         <div className="flex gap-10 items-center">
-          <Link to="/profile" className="text-lg">
+          <Link
+            to="/search"
+            className="text-lg hover:[text-shadow:0_0_20px_#e6dedd] cursor-pointer"
+          >
+            Search
+          </Link>
+          <Link
+            to="/profile"
+            className="text-lg hover:[text-shadow:0_0_20px_#e6dedd] cursor-pointer"
+          >
             Profile
           </Link>
-          <button onClick={handleLogout} className="text-lg cursor-pointer">
+          <button
+            onClick={handleLogout}
+            className="text-lg hover:[text-shadow:0_0_20px_#e6dedd] cursor-pointer"
+          >
             Log out
           </button>
         </div>
       ) : (
-        <div className="flex items-center">
-          <Link to="/login" className="text-lg">
+        <div className="flex items-center gap-10">
+          <Link
+            to="/search"
+            className="text-lg hover:[text-shadow:0_0_20px_#e6dedd] cursor-pointer"
+          >
+            Search
+          </Link>
+          <Link
+            to="/login"
+            className="text-lg hover:[text-shadow:0_0_20px_#e6dedd] cursor-pointer"
+          >
             Login
           </Link>
         </div>

@@ -1,6 +1,5 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Link } from "react-router-dom";
-import { MovieCard } from "../../components/MovieCard";
 import { useAuth } from "../auth/useAuth";
 
 export const Watchlist = () => {
@@ -15,7 +14,7 @@ export const Watchlist = () => {
   }
 
   return (
-    <div className="m-8">
+    <div className="m-8 min-h-screen">
       <h1 className="text-4xl text-center">MY WATCHLIST</h1>
       <Tabs defaultValue="recently" className="mx-8 mt-8 flex justify-center">
         <TabsList className="flex gap-10 bg-[#1E1E1E]">
@@ -29,10 +28,7 @@ export const Watchlist = () => {
       >
         + Add Movies & TV Shows
       </Link>
-      <div className="m-8 grid grid-cols-5 gap-6">
-        <MovieCard />
-        <MovieCard />
-      </div>
+      <div className="m-8 grid grid-cols-5 gap-6">Movie Card</div>
     </div>
   );
 };
