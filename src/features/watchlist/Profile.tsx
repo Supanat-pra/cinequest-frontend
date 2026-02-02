@@ -1,16 +1,13 @@
-import { useEffect } from "react";
 import { useAuth } from "../auth/useAuth";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 export const Profile = () => {
   const { isLoggedIn, user } = useAuth();
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/");
-    }
-  }, [isLoggedIn, navigate]);
+
+  if (!isLoggedIn) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-[32%_68%] min-h-screen">

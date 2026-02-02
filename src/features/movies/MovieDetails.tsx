@@ -2,11 +2,17 @@ import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import Lottie from "lottie-react";
 import LoadAnimate from "../../assets/LoadAnimate.json";
-import type { MediaDetail, ReviewPayload } from "./movies.type";
-import type { Watchlist } from "../watchlist/watchlist.type";
+import type { MediaDetail } from "./movies.type";
+import type { Watchlist, ReviewPayload } from "../watchlist/watchlist.type";
 import { getDetails } from "./movies.service";
 import { useAuth } from "../auth/useAuth";
-import { getWatchlist } from "../watchlist/watchlist.service";
+import {
+  createWatchlist,
+  deleteWatchlist,
+  getWatchlist,
+  updateWatchlist,
+} from "../watchlist/watchlist.service";
+import { ReviewForm } from "@/components/ReviewForm";
 
 type Params = {
   mediaType?: "movie" | "tv";
@@ -26,10 +32,6 @@ export const MovieDetails = () => {
     title: "",
     vote_average: 0,
   });
-  const [reviews, setReviews] = useState<ReviewPayload>({
-    review: "",
-    rating: 0,
-  });
   const [watchlist, setWatchlist] = useState<Watchlist[]>([
     {
       user_id: 0,
@@ -40,8 +42,10 @@ export const MovieDetails = () => {
     },
   ]);
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
   const imageURL = "https://image.tmdb.org/t/p/w342";
 
+  // Fetch movie details
   useEffect(() => {
     if (mediaType !== "movie" && mediaType !== "tv") return;
     if (typeof movieId !== "string") return;
@@ -59,6 +63,7 @@ export const MovieDetails = () => {
     fetchDetails();
   }, [mediaType, movieId]);
 
+  // Fetch watchlist
   useEffect(() => {
     if (!isLoggedIn) {
       setWatchlist([]);
@@ -75,6 +80,47 @@ export const MovieDetails = () => {
     fetchWatchlist();
   }, [isLoggedIn]);
 
+  // Fetch individual watchlist, if exist normalize initial review for pass down into ReviewForm
+  const userData =
+    watchlist.find((item) => item.tmdb_id === Number(movieId)) ?? null;
+  const initialReview: ReviewPayload | null = userData
+    ? { review: userData.review ?? "", rating: userData.rating ?? 0 }
+    : null;
+
+  // Create Watchlist
+  const handleSaveReview = async (payload: ReviewPayload) => {
+    if (typeof movieId !== "string") return;
+    setSaving(true);
+    try {
+      if (!userData) {
+        await createWatchlist(movieId, payload);
+      } else {
+        await updateWatchlist(movieId, payload);
+      }
+      const updated = await getWatchlist();
+      setWatchlist(updated);
+    } catch (err) {
+      console.error("Failed to save review", err);
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleDeleteWatchlist = async () => {
+    if (!userData) return;
+    if (typeof movieId !== "string") return;
+    const confirm = window.confirm("Remove from watchlist?");
+    if (!confirm) return;
+    try {
+      await deleteWatchlist(movieId);
+      const updated = await getWatchlist();
+      setWatchlist(updated);
+    } catch (err) {
+      console.error("Failed to delete review", err);
+    }
+  };
+
+  // if path params not applicable => 404
   if (
     !(
       (mediaType === "movie" || mediaType === "tv") &&
@@ -108,7 +154,18 @@ export const MovieDetails = () => {
           />
         </div>
         <div className="flex flex-col gap-6">
-          <div className="text-5xl font-bold">{result?.title}</div>
+          <div className="flex justify-between">
+            <div className="text-5xl font-bold">{result?.title}</div>
+            {userData ? (
+              <button
+                className="bg-[#2a2929] px-1 h-10 cursor-pointer rounded-sm hover:bg-[#0b0b0b]"
+                onClick={handleDeleteWatchlist}
+              >
+                Delete Watchlist
+              </button>
+            ) : null}
+          </div>
+
           <div className="flex flex-col">
             <div>{result.release_date}</div>
             <div>{result.genres.map((item) => `${item.name} `)}</div>
@@ -116,38 +173,14 @@ export const MovieDetails = () => {
           <div className="text-xl font-bold">Overview:</div>
           <div className="">{result.overview}</div>
           <div>Vote Rating: {result.vote_average}</div>
-
+          {/* Child component(ReviewForm) need to have "key" to make React re-initialize the component again React not remount because React thinks it is still the same MovieDetails page */}
           {isLoggedIn ? (
-            <>
-              <div className="text-xl font-bold">Write your review!:</div>
-              <textarea
-                className="w-full bg-[#232323] p-2"
-                name="review"
-                id="review"
-                rows={4}
-              ></textarea>
-              <div className="flex justify-between">
-                <div className="flex items-center space-x-2">
-                  <div className="text-lg">Give a rating: </div>
-                  <input
-                    className="bg-[#232323] w-8 text-lg"
-                    type="number"
-                    name="rating"
-                    id="rating"
-                    min="0"
-                    max="10"
-                    step="1"
-                  />
-                  <div className="text-lg">/10</div>
-                </div>
-                <button
-                  className="bg-red-500 p-2 hover:bg-red-700"
-                  type="submit"
-                >
-                  Add to Watchlist
-                </button>
-              </div>
-            </>
+            <ReviewForm
+              key={movieId}
+              isSaving={saving}
+              initialValue={initialReview}
+              onSubmit={handleSaveReview}
+            />
           ) : (
             <div className="bg-red-900 text-center w-full p-5 mx-auto mt-10">
               You can add this to your watchlist! Please login first.

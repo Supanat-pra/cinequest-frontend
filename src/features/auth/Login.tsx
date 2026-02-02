@@ -1,25 +1,17 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "./useAuth";
 
 export const Login = () => {
   const { isLoggedIn, login } = useAuth();
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
   const [form, setForm] = useState({ username: "", password: "" });
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      navigate("/watchlist");
-    }
-  }, [isLoggedIn, navigate]);
 
   const handleLogIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     try {
       await login(form);
-      navigate("/watchlist");
     } catch {
       alert("Invalid username or password");
     } finally {
@@ -30,6 +22,8 @@ export const Login = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+
+  if (isLoggedIn) return <Navigate to="/watchlist" replace />;
 
   return (
     <div className="flex justify-center p-20 min-h-screen">

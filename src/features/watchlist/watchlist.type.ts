@@ -5,3 +5,8 @@ export interface Watchlist {
   rating: number | null;
   created_at: string;
 }
+
+export interface ReviewPayload {
+  review: string;
+  rating: number;
+}

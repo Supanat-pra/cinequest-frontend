@@ -9,11 +9,6 @@ export interface MediaDetail {
   vote_average: number;
 }
 
-export interface ReviewPayload {
-  review: string;
-  rating: number;
-}
-
 export interface TMDbSummaryResult {
   id: number;
   media_type: "movie" | "tv";
