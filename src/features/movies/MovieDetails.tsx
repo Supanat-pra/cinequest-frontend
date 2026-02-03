@@ -35,7 +35,10 @@ export const MovieDetails = () => {
   const [watchlist, setWatchlist] = useState<Watchlist[]>([
     {
       user_id: 0,
+      media_type: "movie",
       tmdb_id: 0,
+      title: "",
+      poster_path: "",
       review: "",
       rating: 0,
       created_at: "",
@@ -89,11 +92,18 @@ export const MovieDetails = () => {
 
   // Create Watchlist
   const handleSaveReview = async (payload: ReviewPayload) => {
+    if (mediaType !== "movie" && mediaType !== "tv") return;
     if (typeof movieId !== "string") return;
     setSaving(true);
     try {
       if (!userData) {
-        await createWatchlist(movieId, payload);
+        await createWatchlist(
+          mediaType,
+          movieId,
+          result.title,
+          result.poster_path,
+          payload,
+        );
       } else {
         await updateWatchlist(movieId, payload);
       }

@@ -64,10 +64,7 @@ export const Login = () => {
               />
               Remember me
             </label>
-            <Link
-              to="/forgotpassword"
-              className="text-sm text-blue-700 hover:underline"
-            >
+            <Link to="/" className="text-sm text-blue-700 hover:underline">
               Forgot password
             </Link>
           </div>

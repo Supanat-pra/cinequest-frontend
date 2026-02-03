@@ -6,7 +6,7 @@ import { Search } from "../features/movies/Search";
 import { Register } from "../features/auth/Register";
 import { Profile } from "../features/watchlist/Profile";
 import { MovieDetails } from "../features/movies/MovieDetails";
-import { Watchlist } from "../features/watchlist/Watchlist";
+import { WatchlistPage } from "../features/watchlist/WatchlistPage";
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
       { path: "/profile", element: <Profile /> },
       { path: "/register", element: <Register /> },
       { path: "/search", element: <Search /> },
-      { path: "/watchlist", element: <Watchlist /> },
+      { path: "/watchlist", element: <WatchlistPage /> },
     ],
   },
 ]);

@@ -3,10 +3,18 @@ import type { ReviewPayload } from "../watchlist/watchlist.type";
 import type { Watchlist } from "./watchlist.type";
 
 export const createWatchlist = async (
+  mediaType: "movie" | "tv",
   movieId: string,
+  title: string,
+  poster_path: string,
   payload: ReviewPayload,
 ): Promise<Watchlist> => {
-  const res = await api.post(`/watchlist/${movieId}`, payload);
+  const res = await api.post(`/watchlist/${mediaType}/${movieId}`, {
+    title,
+    poster_path,
+    review: payload.review,
+    rating: payload.rating,
+  });
   return res.data.data;
 };
 

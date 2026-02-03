@@ -25,12 +25,14 @@ export const Navbar: React.FC = () => {
           <Link to="/" className="text-lg hover:[text-shadow:0_0_20px_#e6dedd]">
             Home
           </Link>
-          <Link
-            to="/watchlist"
-            className="text-lg hover:[text-shadow:0_0_20px_#e6dedd] cursor-pointer"
-          >
-            Watchlist
-          </Link>
+          {isLoggedIn ? (
+            <Link
+              to="/watchlist"
+              className="text-lg hover:[text-shadow:0_0_20px_#e6dedd] cursor-pointer"
+            >
+              Watchlist
+            </Link>
+          ) : null}
         </div>
       </div>
 
@@ -74,14 +76,3 @@ export const Navbar: React.FC = () => {
     </div>
   );
 };
-
-{
-  /* <div className="flex items-center gap-2 bg-darkCard px-3 py-1.5 rounded-lg">
-          <Search size={18} />
-          <input
-            type="text"
-            placeholder="Search..."
-            className="bg-transparent outline-none text-sm"
-          />
-        </div> */
-}
