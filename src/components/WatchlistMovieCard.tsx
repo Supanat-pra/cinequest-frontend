@@ -12,7 +12,7 @@ export const WatchlistMovieCard = ({ item }: WatchlistMovieCardProps) => {
 
   return (
     <motion.div
-      className="flex gap-4 bg-[#1A1A1A] h-50 p-3 rounded-lg cursor-pointer"
+      className="flex flex-col gap-1 md:flex-row md:gap-2 bg-[#1A1A1A] p-1 md:p-2 rounded-lg cursor-pointer"
       onClick={() => navigate(`/title/${item.media_type}/${item.tmdb_id}`)}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
@@ -21,27 +21,32 @@ export const WatchlistMovieCard = ({ item }: WatchlistMovieCardProps) => {
       transition={{ duration: 0.25, ease: "easeOut" }}
     >
       {/* Poster */}
-      <img
-        src={
-          item.poster_path
-            ? `${imageURL}${item.poster_path}`
-            : "https://placehold.co/120x180"
-        }
-        alt={item.title}
-        className="w-28 aspect-3/4 object-cover rounded-md shrink-0"
-      />
+      <div className="w-full md:w-30 h-40 md:h-46 md:aspect-2/3 overflow-hidden rounded-md shrink-0">
+        <img
+          src={
+            item.poster_path
+              ? `${imageURL}${item.poster_path}`
+              : "https://placehold.co/120x180"
+          }
+          alt={item.title}
+          className="w-full h-full object-contain md:object-cover"
+          // className="w-full aspect-2/3 object-contain rounded-md md:w-33 md:aspect-2/3 md:object-cover md:rounded-md md:shrink-0"
+        />
+      </div>
 
       {/* Content */}
-      <div className="flex flex-col gap-2 overflow-hidden">
-        <div className="text-lg font-semibold truncate">{item.title}</div>
+      <div className="flex flex-col gap-1 md:gap-2 overflow-hidden">
+        <div className="text-xs text-center md:text-left md:text-base font-semibold truncate">
+          {item.title}
+        </div>
 
         {/* User Rating */}
-        <div className="text-sm text-yellow-400">
+        <div className="text-xs text-center md:text-left  text-yellow-400">
           {item.rating !== null ? `⭐ ${item.rating} / 10` : "Not rated"}
         </div>
 
         {/* User Review */}
-        <div className="text-xs text-gray-300 bg-[#232323] p-2 rounded-md ">
+        <div className="text-xs text-gray-300 bg-[#232323] p-1 md:p-2 rounded-md line-clamp-2 md:line-clamp-5">
           {item.review || "No review written."}
         </div>
       </div>

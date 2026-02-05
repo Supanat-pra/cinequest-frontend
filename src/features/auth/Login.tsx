@@ -26,9 +26,9 @@ export const Login = () => {
   if (isLoggedIn) return <Navigate to="/watchlist" replace />;
 
   return (
-    <div className="flex justify-center p-20 min-h-screen">
+    <div className="min-h-screen flex justify-center p-5 md:p-20 ">
       <div className="bg-[#1E1E1E] flex flex-col gap-10 w-[400px] h-[500px] p-10 border border-neutral-700 rounded-md">
-        <div className="text-5xl">Login</div>
+        <div className="text-4xl md:text-5xl">Login</div>
         <form onSubmit={handleLogIn} className="flex flex-col gap-5">
           <div>
             <input

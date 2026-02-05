@@ -44,21 +44,30 @@ export const WatchlistPage = () => {
   }
 
   return (
-    <div className="m-8 min-h-screen">
+    <div className="m-2 mt-4 md:m-8 min-h-screen">
       <h1 className="text-4xl text-center">MY WATCHLIST</h1>
-      <Tabs defaultValue="recently" className="mx-8 mt-8 flex justify-center">
-        <TabsList className="flex gap-10 bg-[#1E1E1E]">
+      <Tabs
+        defaultValue="recently"
+        className="mx-8 mt-4 md:mt-8 flex justify-center"
+      >
+        <TabsList className="flex gap-5 md:gap-10 bg-[#1E1E1E]">
           <TabsTrigger value="recently">Recently Added</TabsTrigger>
           <TabsTrigger value="alphabetical">Alphabetical</TabsTrigger>
         </TabsList>
       </Tabs>
       <Link
         to="/search"
-        className="sticky left-330 bg-[#1E1E1E] p-3 rounded-lg hover:scale-105 transition-all duration-200"
+        className="md:hidden block w-fit ml-auto bg-[#1E1E1E] py-1 px-2 rounded-lg hover:scale-105 transition-all duration-200 hover:bg-[#141414]"
+      >
+        +
+      </Link>
+      <Link
+        to="/search"
+        className="hidden md:block w-fit ml-auto bg-[#1E1E1E] p-3 rounded-lg hover:scale-105 transition-all duration-200 hover:bg-[#141414]"
       >
         + Add Movies & TV Shows
       </Link>
-      <div className="m-8 grid grid-cols-5 gap-6">
+      <div className="grid grid-cols-2 gap-2 mt-4 md:mt-8 md:grid md:grid-cols-5 md:gap-4">
         {watchlist.map((item) => {
           return (
             <WatchlistMovieCard

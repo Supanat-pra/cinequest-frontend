@@ -74,7 +74,7 @@ export const Search = () => {
   }
 
   return (
-    <div className="m-8">
+    <div className="m-4 md:m-8">
       <form onSubmit={handleSubmit}>
         <div className="w-full max-w-4xl mx-auto flex gap-5">
           <input
@@ -94,7 +94,7 @@ export const Search = () => {
           </button>
         </div>
       </form>
-      <div className="m-8 grid grid-cols-4 gap-6">
+      <div className="mt-4 grid grid-cols-2 gap-2 md:m-8 md:grid md:grid-cols-4 md:gap-6">
         {data.results.map((item) => {
           return (
             <MovieCard key={`${item.media_type}-${item.id}`} item={item} />

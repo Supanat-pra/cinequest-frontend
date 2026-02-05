@@ -152,8 +152,8 @@ export const MovieDetails = () => {
 
   return (
     <div>
-      <div className="m-8 grid grid-cols-[32%_68%] min-h-screen">
-        <div>
+      <div className="flex flex-col m-8 md:grid grid-cols-[32%_68%] min-h-screen">
+        <div className="h-130 aspect-2/3 pr-4">
           <img
             src={
               result.poster_path
@@ -161,14 +161,17 @@ export const MovieDetails = () => {
                 : "https://placehold.co/235x353"
             }
             alt="movieimg"
+            className="w-full h-full object-cover"
           />
         </div>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 mt-2">
           <div className="flex justify-between">
-            <div className="text-5xl font-bold">{result?.title}</div>
+            <div className="text-2xl md:text-5xl font-bold">
+              {result?.title}
+            </div>
             {userData ? (
               <button
-                className="bg-[#2a2929] px-1 h-10 cursor-pointer rounded-sm hover:bg-[#0b0b0b]"
+                className="bg-[#2a2929] text-sm md:text-base px-1 md:h-10 cursor-pointer rounded-sm hover:bg-[#0b0b0b]"
                 onClick={handleDeleteWatchlist}
               >
                 Delete Watchlist
