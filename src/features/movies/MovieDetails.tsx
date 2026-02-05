@@ -195,7 +195,7 @@ export const MovieDetails = () => {
               onSubmit={handleSaveReview}
             />
           ) : (
-            <div className="bg-red-900 text-center w-full p-5 mx-auto mt-10">
+            <div className="bg-red-900 text-center w-full p-5 mx-auto mt-4 md:mt-10">
               You can add this to your watchlist! Please login first.
             </div>
           )}

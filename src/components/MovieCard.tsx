@@ -22,7 +22,7 @@ export const MovieCard = ({ item }: MovieCardProps) => {
     >
       <div className="text-lg md:text-xl truncate">{item.title}</div>
 
-      <div className="mt-2 w-full overflow-hidden mb-2 rounded-md">
+      <div className="mt-2 aspect-3/4 md:aspect-2/3 overflow-hidden mb-2 rounded-md">
         <motion.img
           src={
             item.poster_path
@@ -30,14 +30,14 @@ export const MovieCard = ({ item }: MovieCardProps) => {
               : "https://placehold.co/235x353"
           }
           alt={item.title}
-          className="w-full aspect-10/11 object-fit md:aspect-2/3 md:object-cover"
+          className="w-full h-full object-cover md:aspect-2/3"
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
         />
       </div>
 
       <div className="text-xs md:text-sm text-gray-400">Overview:</div>
-      <div className="bg-[#232323] text-xs md:text-sm p-0.5 md:p-1 rounded-md line-clamp-4">
+      <div className="bg-[#232323] text-xs md:text-sm p-0.5 md:p-1 rounded-md line-clamp-2 md:line-clamp-4">
         {item.overview}
       </div>
 
