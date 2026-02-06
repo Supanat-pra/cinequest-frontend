@@ -15,13 +15,13 @@ export const Navbar: React.FC = () => {
 
   return (
     <div className="sticky z-50 top-0 w-full bg-[#141313] flex justify-between border-b-2 border-neutral-700 px-2 md:pl-5 md:pr-10 md:py-2">
-      <div className="flex gap-5 items-center">
+      <div className="flex gap-3 md:gap-5 items-center">
         <img
           src={movieicon}
           alt="movieicon"
           className="w-12 h-12 align-middle"
         ></img>
-        <div className="flex items-center gap-4 md:gap-10">
+        <div className="flex items-center gap-3 md:gap-10">
           <Link
             to="/"
             className="text-sm md:text-lg hover:[text-shadow:0_0_20px_#e6dedd]"
@@ -40,7 +40,7 @@ export const Navbar: React.FC = () => {
       </div>
 
       {isLoggedIn ? (
-        <div className="flex items-center gap-5 md:gap-10">
+        <div className="flex items-center gap-3 md:gap-10">
           <Link
             to="/search"
             className="text-sm md:text-lg hover:[text-shadow:0_0_20px_#e6dedd] cursor-pointer"
