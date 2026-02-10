@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Lottie from "lottie-react";
 import LoadAnimate from "../../assets/LoadAnimate.json";
 import type { MediaDetail } from "./movies.type";
@@ -22,6 +22,7 @@ type Params = {
 export const MovieDetails = () => {
   const { isLoggedIn } = useAuth();
   const { mediaType, movieId } = useParams<Params>();
+  const navigate = useNavigate();
   const [result, setResult] = useState<MediaDetail>({
     genres: [{ name: "" }],
     id: 0,
@@ -104,11 +105,12 @@ export const MovieDetails = () => {
           result.poster_path,
           payload,
         );
-      } else {
-        await updateWatchlist(movieId, payload);
+        const updated = await getWatchlist();
+        setWatchlist(updated);
+        return;
       }
-      const updated = await getWatchlist();
-      setWatchlist(updated);
+      await updateWatchlist(movieId, payload);
+      navigate("/watchlist");
     } catch (err) {
       console.error("Failed to save review", err);
     } finally {

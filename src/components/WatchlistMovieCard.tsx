@@ -12,7 +12,7 @@ export const WatchlistMovieCard = ({ item }: WatchlistMovieCardProps) => {
 
   return (
     <motion.div
-      className="flex flex-col gap-1 md:flex-row md:gap-2 bg-[#1A1A1A] p-1 md:p-2 rounded-lg cursor-pointer"
+      className="flex flex-col gap-1 md:flex-row md:gap-2 bg-[#1A1A1A] p-1 md:p-2 rounded-lg"
       onClick={() => navigate(`/title/${item.media_type}/${item.tmdb_id}`)}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}

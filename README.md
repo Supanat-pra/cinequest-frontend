@@ -16,7 +16,6 @@ This project demonstrates **modern frontend practices**, API consumption, state 
 - 🔍 Search movies & TV shows
 - ⭐ Rate and review watched titles
 - 📚 Personal watch history
-- 📊 Compare ratings with other users
 - 💡 Clean, minimal UI
 
 ---
@@ -30,6 +29,7 @@ This project demonstrates **modern frontend practices**, API consumption, state 
 - **Axios**
 - **Tailwind CSS**
 - **shadcn**
+- **framer motion**
 
 ---
 
@@ -37,13 +37,12 @@ This project demonstrates **modern frontend practices**, API consumption, state 
 
 ```bash
 src/
-├── api/            # API clients & fetch wrappers
+├── api/            # API clients
+├── app/            # App setup & configuration
+├── assets/         # Static files (images, icons, fonts)
 ├── components/     # Reusable UI components
-├── pages/          # Route-level pages
-├── context/        # Auth & global state
-├── hooks/          # Custom React hooks
-├── utils/          # Helpers & constants
-├── App.tsx
+├── features/       # Feature-based pages & logic
+├── lib/            # Helpers & utilities
 └── main.tsx
 ```
 
@@ -68,7 +67,7 @@ Cookie: accessToken=<token>
 ### Prerequisites
 
 - Node.js ≥ 18
-- Running CineQuest Backend
+- Running CineQuest Frontend
 
 ### Installation
 
