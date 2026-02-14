@@ -168,7 +168,7 @@ export const MovieDetails = () => {
         </div>
         <div className="flex flex-col gap-6 mt-2">
           <div className="flex justify-between">
-            <div className="text-2xl md:text-5xl font-bold">
+            <div className="text-2xl md:text-5xl font-bold text-[#f47575]">
               {result?.title}
             </div>
             {userData ? (
@@ -185,9 +185,12 @@ export const MovieDetails = () => {
             <div>{result.release_date}</div>
             <div>{result.genres.map((item) => `${item.name} `)}</div>
           </div>
-          <div className="text-xl font-bold">Overview:</div>
+          <div className="text-xl font-bold text-[#f5abab]">Overview:</div>
           <div className="">{result.overview}</div>
-          <div>Vote Rating: {result.vote_average}</div>
+          <div className="text-[#f5abab]">
+            Vote Rating:{" "}
+            <span className="text-white">{result.vote_average}</span>
+          </div>
           {/* Child component(ReviewForm) need to have "key" to make React re-initialize the component again React not remount because React thinks it is still the same MovieDetails page */}
           {isLoggedIn ? (
             <ReviewForm
