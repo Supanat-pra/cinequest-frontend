@@ -44,7 +44,7 @@ export const Login = () => {
           </div>
           <div>
             <input
-              type="text"
+              type="password"
               className="bg-white text-black px-2 text-md w-full h-10"
               id="password"
               name="password"
