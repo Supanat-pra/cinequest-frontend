@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export const Home = () => {
   return (
-    <div className="min-h-screen flex mt-30 justify-center px-6">
+    <div className="h-screen flex pt-30 justify-center px-6">
       <motion.div
         className="max-w-2xl text-center flex flex-col items-center gap-6"
         initial={{ opacity: 0, y: 20 }}
